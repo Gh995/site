@@ -4,93 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <canvas id="bg"></canvas>
+    <div class="title">Gh995</div>
 
-    <div class="content">
-        <div class="title">Gh995</div>
-        <div class="container">
-            <a href="https://github.com/Gh995" target="_blank" class="rectangle">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://Gitlab.com/Gh995" target="_blank" class="rectangle">
-                <i class="fa-brands fa-gitlab"></i>
-            </a>
-            <a href="https://guns.lol/Gh995" target="_blank" class="rectangle">
-                <i class="fa-solid fa-gun"></i>
-            </a>
-        </div>
+    <div class="container">
+
+        <a href="https://github.com/Gh995" target="_blank" class="rectangle">
+            <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://Gitlab.com/Gh995" target="_blank" class="rectangle">
+            <i class="fa-brands fa-gitlab"></i>
+        </a>
+
+        <a href="https://guns.lol/Gh995" target="_blank" class="rectangle">
+            <i class="fa-solid fa-gun"></i>
+        </a>
+
     </div>
-
-    <script>
-        const canvas = document.getElementById('bg');
-        const ctx = canvas.getContext('2d');
-
-        let W, H, t = 0;
-
-        const layers = [
-            { color: '#0a0a0a', speed: 0.0004, wavelength: 0.6, amplitude: 0.18, yBase: 0.05 },
-            { color: '#111111', speed: 0.0005, wavelength: 0.55, amplitude: 0.17, yBase: 0.18 },
-            { color: '#1b1b1b', speed: 0.0006, wavelength: 0.5,  amplitude: 0.16, yBase: 0.30 },
-            { color: '#272727', speed: 0.0005, wavelength: 0.58, amplitude: 0.17, yBase: 0.42 },
-            { color: '#363636', speed: 0.0004, wavelength: 0.6,  amplitude: 0.16, yBase: 0.54 },
-            { color: '#4c4c4c', speed: 0.0006, wavelength: 0.52, amplitude: 0.15, yBase: 0.65 },
-            { color: '#696969', speed: 0.0005, wavelength: 0.56, amplitude: 0.16, yBase: 0.75 },
-            { color: '#878787', speed: 0.0004, wavelength: 0.6,  amplitude: 0.15, yBase: 0.84 },
-            { color: '#a4a4a4', speed: 0.0005, wavelength: 0.54, amplitude: 0.14, yBase: 0.92 },
-        ];
-
-        function resize() {
-            W = canvas.width = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-
-        function drawLayer(layer, index) {
-            const yCenter = layer.yBase * H;
-            const amp = layer.amplitude * H;
-            const freq = layer.wavelength;
-            const phase = t * layer.speed * 1000 + index * 0.8;
-
-            ctx.beginPath();
-            ctx.moveTo(0, H);
-
-            for (let x = 0; x <= W; x += 4) {
-                const nx = x / W;
-                const y = yCenter + Math.sin(nx * Math.PI * 2 * freq + phase) * amp
-                                  + Math.sin(nx * Math.PI * 3.3 * freq + phase * 0.7) * amp * 0.3;
-                ctx.lineTo(x, y);
-            }
-
-            ctx.lineTo(W, H);
-            ctx.closePath();
-            ctx.fillStyle = layer.color;
-            ctx.fill();
-        }
-
-        function draw(timestamp) {
-            t = timestamp;
-            ctx.clearRect(0, 0, W, H);
-
-            // Fill darkest base
-            ctx.fillStyle = '#a4a4a4';
-            ctx.fillRect(0, 0, W, H);
-
-            // Draw layers from lightest (bottom) to darkest (top)
-            for (let i = layers.length - 1; i >= 0; i--) {
-                drawLayer(layers[i], i);
-            }
-
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-        requestAnimationFrame(draw);
-    </script>
 
 </body>
 </html>
