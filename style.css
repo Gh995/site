@@ -19,6 +19,16 @@ body {
     z-index: -1;
 }
 
+#clock {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 48px;
+    letter-spacing: 4px;
+    font-family: monospace;
+}
+
 .title {
     color: white;
     font-size: 24px;
@@ -48,13 +58,4 @@ body {
 
 .rectangle:hover {
     transform: scale(1.1);
-}
-
-.clock {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    color: rgba(255, 255, 255, 0.1);
-    font-size: 48px;
-    letter-spacing: 4px;
 }
